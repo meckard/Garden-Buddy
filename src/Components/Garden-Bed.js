@@ -5,7 +5,7 @@ import { itemTypes } from "../ItemTypes"
 export default function GardenBed () {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
         accept: itemTypes.bed,
-        drop: () => ({ name: 'Dustbin' }),
+        drop: () => ({ name: 'Garden Bed' }),
         collect: (monitor) => ({
           isOver: monitor.isOver(),
           canDrop: monitor.canDrop(),
