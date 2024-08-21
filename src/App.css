@@ -1,3 +1,21 @@
+:root {
+	--main-green: #4caf50;
+	--dark-green: #2e7d32;
+	--light-green: #81c784;
+	--rich-brown: #795548;
+	--soft-beige: #d7ccc8;
+	--sky-blue: #64b5f6;
+	--deep-blue: #1976d2;
+	--bright-yellow: #ffeb3b;
+	--soft-lavender: #ce93d8;
+	--medium-gray: #9e9e9e;
+	--light-gray: #e0e0e0;
+}
+
+html {
+	background-color: var(--soft-beige);
+}
+
 body {
 	margin: 0;
 	width: 100vw;
@@ -21,6 +39,8 @@ main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: var(--light-green);
+	box-shadow: inset 0px 0px 11px 0px var(--rich-brown);
 }
 
 .drop-box {
@@ -35,8 +55,11 @@ main {
 }
 
 .plant-node {
-	width: 100px;
-	height: 100px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 	background-color: aqua;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
