@@ -11,7 +11,7 @@ export default function GardenBed() {
 		}),
 	}));
 	const isActive = canDrop && isOver;
-	let backgroundColor = "#222";
+	let backgroundColor = "var(--rich-brown)";
 	if (isActive) {
 		backgroundColor = "blue";
 	} else if (canDrop) {

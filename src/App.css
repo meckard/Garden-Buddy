@@ -28,8 +28,6 @@ body {
 
 .App-header {
 	height: 10vh;
-	width: 100%;
-	border-bottom: 1px solid black;
 }
 
 main {
@@ -39,19 +37,22 @@ main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--light-green);
-	box-shadow: inset 0px 0px 11px 0px var(--rich-brown);
+	background-color: var(--soft-beige);
+	border-top: 2px solid var(--deep-blue);
+	/* box-shadow: inset 0px 0px 11px 0px var(--rich-brown); */
 }
 
 .drop-box {
-	width: 300px;
-	height: 300px;
+	width: 75%;
+	height: 60%;
 	background-color: grey;
 }
 
 .panel {
 	grid-area: panel;
-	background-color: red;
+	background-color: var(--light-green);
+	border-top: 2px solid var(--deep-blue);
+	border-left: 2px solid var(--deep-blue);
 }
 
 .plant-node {
