@@ -3,6 +3,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import GardenBed from "./Components/Garden-Bed";
 import Flower from "./Components/Flower";
+import FlowerList from "./Components/FlowerList";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 					</main>
 					<div className="panel">
 							<Flower name={"rose"} />
+							<FlowerList/>
 					</div>
 				</body>
 			</DndProvider>

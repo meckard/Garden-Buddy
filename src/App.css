@@ -3,6 +3,7 @@
 	--dark-green: #2e7d32;
 	--light-green: #81c784;
 	--rich-brown: #795548;
+	--dark-brown: #49330d;
 	--soft-beige: #d7ccc8;
 	--sky-blue: #64b5f6;
 	--deep-blue: #1976d2;
@@ -32,13 +33,14 @@ body {
 
 main {
 	grid-area: main;
-	background-image: radial-gradient(black 1px, transparent 0);
+	background-image: url(../public/Images/Field.png);
 	background-size: 40px 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: var(--soft-beige);
-	border-top: 2px solid var(--deep-blue);
+	border-top: 2px solid var(--rich-brown);
+	background-size: contain;
 	/* box-shadow: inset 0px 0px 11px 0px var(--rich-brown); */
 }
 
@@ -46,13 +48,16 @@ main {
 	width: 75%;
 	height: 60%;
 	background-color: grey;
+	border: 10px solid var(--dark-brown);
+	border-radius: 8px;
+	box-shadow: 4px 3px 20px 0px darkslategray;
 }
 
 .panel {
 	grid-area: panel;
 	background-color: var(--light-green);
-	border-top: 2px solid var(--deep-blue);
-	border-left: 2px solid var(--deep-blue);
+	border-top: 2px solid var(--rich-brown);
+	border-left: 2px solid var(--rich-brown);
 }
 
 .plant-node {
