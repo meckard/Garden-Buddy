@@ -1,19 +1,12 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
+import { plantinfo } from "../Plantinfo";
+import Flower from "./Flower";
 
-
-export default function FlowerList () {
-
-    const getPlants = async () => {
-        const response = await fetch(apiUrl)
-        const json = await response.json()
-        console.log(json)
-    }
-
-    getPlants()
-
-    
-
-    return(
-        <p>hey</p>
-    )
+export default function FlowerList() {
+    const plants = plantinfo.map((plant) => {
+        return(
+            <Flower name={plant.name}/>
+        )
+    })
+		return plants
 }
