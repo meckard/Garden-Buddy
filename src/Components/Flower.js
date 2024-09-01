@@ -18,13 +18,13 @@ export default function Flower({ name }) {
 	}));
 	const opacity = isDragging ? 0.4 : 1;
 	return (
-		<div
+		<span
 			ref={drag}
 			style={{ opacity }}
 			data-testid={`box`}
             className="plant-node"
 		>
 			{name}
-		</div>
+		</span>
 	);
 }

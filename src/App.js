@@ -17,7 +17,6 @@ function App() {
 							<GardenBed />
 					</main>
 					<div className="panel">
-							<Flower name={"rose"} />
 							<FlowerList/>
 					</div>
 				</body>
