@@ -63,16 +63,22 @@ main {
 .plant-node {
 	width: 60px;
 	height: 60px;
+	margin: 15px;
 	border-radius: 50%;
 	background-color: var(--soft-lavender);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin: 15px;
 	font-size: 10px;
 	font-weight: bold;
 	color: var(--dark-brown);
-	border: 3px dashed var(--dark-brown)
+	border: 3px dashed var(--dark-brown);
+	transition: transform 0.5s;
+	text-align: center;
+}
+
+.plant-node:hover {
+	transform: scale(1.5);
 }
 
 .plant-list {
