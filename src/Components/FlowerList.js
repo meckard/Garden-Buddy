@@ -1,9 +1,27 @@
 import { plantinfo } from "../Plantinfo";
 import Flower from "./Flower";
+import { useFlowerStore } from "../State/flowerStore";
 
 export default function FlowerList() {
+    const flowerstate = useFlowerStore((state) => state.flowers)
+    console.log(flowerstate)
+    
+    const addFlower = useFlowerStore((state) => state.addFlower)
+    const newFlower = {id: 1, name: "test2", top: 0, left: 0}
+
+    const handleAddFlower = () => {
+        const newFlower = { id: 1, name: 'test2', top: 0, left: 0 };
+        addFlower(newFlower);
+      };
+    console.log(flowerstate)
+
+
+
 	const plants = plantinfo.map((plant) => {
 		return <Flower name={plant.name} />;
 	});
-	return <div className="plant-list">{plants}</div>;
+	return <div className="plant-list">
+        {plants}
+        <button onClick={handleAddFlower}></button>
+        </div>;
 }
