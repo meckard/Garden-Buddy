@@ -13,12 +13,12 @@ export const useFlowerStore = create((set) => ({
             console.log('Flower already exists, not adding.');
 			return state; // No change if the item exists
 		}),
-	updateItem: (updatedFlower) =>
+	updateFlower: (id, top, left) =>
 		set((state) => ({
-			flowers: state.flowers.map((flower) =>
-				flower.id === updatedFlower.id
-					? { ...flower, ...updatedFlower }
-					: flower
-			),
+			flowers: state.flowers.map((flower) => {
+				if (flower.id === id) {
+                    console.log({flowers: [state.flowers[id]] })
+                }
+        }),
 		})),
 }));

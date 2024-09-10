@@ -1,29 +1,23 @@
 import { useDrop } from "react-dnd";
 import { itemTypes } from "../ItemTypes";
-import { useState, useCallback } from "react";
-import update from 'immutability-helper'
+import { useFlowerStore } from "../State/flowerStore";
 
 export default function GardenBed() {
-    const [flowers, setFlowers] = useState({
-        
-    })
-
-    const moveBox = useCallback(
-        (id, left, top) => {
-          setFlowers(
-            update(flowers, {
-              [id]: {
-                $merge: { left, top },
-              },
-            }),
-          )
-        },
-        [flowers, setFlowers],
-      )
+    const flowerState = useFlowerStore((state) => state.flowers)
+    const updateFlower = useFlowerStore((state) => state.updateFlower)
+    
 
 	const [{ canDrop, isOver }, drop] = useDrop(() => ({
 		accept: itemTypes.flower,
-		drop: () => ({ name: "Garden Bed" }),
+		drop(flower, monitor) {
+            const delta = monitor.getDifferenceFromInitialOffset()
+            const left = Math.round(flower.left + delta.x)
+            const top = Math.round(flower.top + delta.y)
+            console.log(flower)
+            updateFlower(flower.id, top, left)
+            console.log(flowerState)
+            return undefined
+          },
 		collect: (monitor) => ({
 			isOver: monitor.isOver(),
 			canDrop: monitor.canDrop(),
