@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const useFlowerStore = create((set) => ({
-	flowers: [{ id: 0, name: "test", top: 0, left: 0 }],
+	flowers: [],
 	addFlower: (newFlower) =>
 		set((state) => {
 			const exists = state.flowers.some((flower) => flower.id === newFlower.id);
@@ -13,12 +13,10 @@ export const useFlowerStore = create((set) => ({
             console.log('Flower already exists, not adding.');
 			return state; // No change if the item exists
 		}),
-	updateFlower: (id, top, left) =>
+	updateFlower: (id, newTop, newLeft) =>
 		set((state) => ({
-			flowers: state.flowers.map((flower) => {
-				if (flower.id === id) {
-                    console.log({flowers: [state.flowers[id]] })
-                }
-        }),
+			flowers: state.flowers.map((flower) =>
+                flower.id === id ? { ...flower, top: newTop, left: newLeft } : flower
+              ),
 		})),
 }));

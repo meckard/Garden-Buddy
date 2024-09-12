@@ -3,21 +3,21 @@ import { itemTypes } from "../ItemTypes";
 import { useFlowerStore } from "../State/flowerStore";
 
 export default function GardenBed() {
-    const flowerState = useFlowerStore((state) => state.flowers)
-    const updateFlower = useFlowerStore((state) => state.updateFlower)
-    
+	const flowerState = useFlowerStore((state) => state.flowers);
+	const updateFlower = useFlowerStore((state) => state.updateFlower);
 
 	const [{ canDrop, isOver }, drop] = useDrop(() => ({
 		accept: itemTypes.flower,
 		drop(flower, monitor) {
-            const delta = monitor.getDifferenceFromInitialOffset()
-            const left = Math.round(flower.left + delta.x)
-            const top = Math.round(flower.top + delta.y)
+			const delta = monitor.getDifferenceFromInitialOffset();
+            console.log(delta.x)
             console.log(flower)
-            updateFlower(flower.id, top, left)
-            console.log(flowerState)
-            return undefined
-          },
+			const left = Math.round(flower.left = 0 + delta.x);
+			const top = Math.round(flower.top = 0 + delta.y);
+			console.log(left)
+			updateFlower(flower.id, top, left);
+			console.log(flowerState);
+		},
 		collect: (monitor) => ({
 			isOver: monitor.isOver(),
 			canDrop: monitor.canDrop(),
@@ -35,7 +35,7 @@ export default function GardenBed() {
 			ref={drop}
 			style={{ backgroundColor }}
 			data-testid="dustbin"
-            className="drop-box"
+			className="drop-box"
 		>
 			{isActive ? "Release to drop" : "Drag a box here"}
 		</div>
