@@ -1,29 +1,22 @@
 import { useDrag } from "react-dnd";
 import { itemTypes } from "../ItemTypes";
 import { useFlowerStore } from "../State/flowerStore";
-import setElementPosition from "../Utils/getPosition";
+import { useEffect, useRef } from "react";
 
 export default function Flower({ name, id, left, top }) {
+	const flowerState = useFlowerStore((state) => state.flowers)
 	const addFlower = useFlowerStore((state) => state.addFlower);
+	const updateFlower = useFlowerStore((state) => state.updateFlower)
+	const elementRef = useRef(null);
 
-    function setElementPosition(element) {
-        // Get the current position of the element
-        const rect = element.getBoundingClientRect();
-        
-        // Set the `top` and `left` based on the element's current position
-        element.style.position = 'absolute'; // Ensure the element is positioned absolutely
-        element.style.top = `${rect.top}px`;
-        element.style.left = `${rect.left}px`;
-      }
-      
-      // Usage example: Setting position of a specific element
-      document.addEventListener('DOMContentLoaded', () => {
-        const element = document.getElementById('my-element'); // Replace with your element's ID or selector
-        
-        // Set the position based on current location
-        setElementPosition(element);
-      });
-
+	// Usage example: Setting position of a specific element
+	useEffect(() => {
+		if (elementRef.current) {
+			const rect = elementRef.current.getBoundingClientRect();
+			updateFlower(id, rect.x, rect.y)
+			console.log(flowerState)
+		}
+	}, []);
 	//Drag logic for each flower component
 	const [{ isDragging }, drag] = useDrag(
 		() => ({
@@ -56,13 +49,14 @@ export default function Flower({ name, id, left, top }) {
 
 	return (
 		<div
-			ref={drag}
+			ref={(el) => {
+				elementRef.current = el;
+				drag(el);
+			}}
 			style={{ opacity, left, top }}
 			data-testid={`box`}
 			className="plant-node"
 			onDragEnd={handleAddFlower}
-            top='0'
-            left='0'
 		>
 			{name}
 		</div>
