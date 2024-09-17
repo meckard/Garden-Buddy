@@ -7,18 +7,9 @@ export default function FlowerList() {
     console.log(flowerstate)
     
     const addFlower = useFlowerStore((state) => state.addFlower)
-    const newFlower = {id: 1, name: "test2", top: 0, left: 0}
-
-
-
-    const handleAddFlower = (flowerInfo) => {
-        const newFlower = { id: 1, name: 'test2', top: 0, left: 0 };
-        addFlower(flowerInfo);
-        console.log(flowerstate)
-      };
-    console.log(flowerstate)
 
 	const plants = plantinfo.map((plant) => {
+    addFlower({ id: plant.id, name: plant.name, top: 0, left: 0})
 		return <Flower name={plant.name} id={plant.id} />;
 	});
 

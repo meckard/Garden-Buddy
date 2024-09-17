@@ -10,11 +10,8 @@ export default function GardenBed() {
 		accept: itemTypes.flower,
 		drop(flower, monitor) {
 			const delta = monitor.getDifferenceFromInitialOffset();
-            console.log(delta.x)
-            console.log(flower)
 			const left = Math.round(flower.left = 0 + delta.x);
 			const top = Math.round(flower.top = 0 + delta.y);
-			console.log(left)
 			updateFlower(flower.id, top, left);
 			console.log(flowerState);
 		},
