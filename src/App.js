@@ -1,23 +1,25 @@
 import "./App.css";
 import GardenBed from "./Components/Garden-Bed";
-import Flower from "./Components/Flower";
+import { DndContext } from "@dnd-kit/core";
 import FlowerList from "./Components/FlowerList";
 
 function App() {
-	
 	return (
 		<div className="App">
-			<header className="App-header">
-				<nav></nav>
-			</header>
+			<DndContext>
+				<header className="App-header">
+					<nav></nav>
+				</header>
 				<body>
+
 					<main>
-							<GardenBed />
+						<GardenBed />
 					</main>
 					<div className="panel">
-							<FlowerList/>
+						<FlowerList />
 					</div>
 				</body>
+			</DndContext>
 		</div>
 	);
 }
