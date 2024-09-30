@@ -1,6 +1,4 @@
 import "./App.css";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import GardenBed from "./Components/Garden-Bed";
 import Flower from "./Components/Flower";
 import FlowerList from "./Components/FlowerList";
@@ -12,7 +10,6 @@ function App() {
 			<header className="App-header">
 				<nav></nav>
 			</header>
-			<DndProvider backend={HTML5Backend}>
 				<body>
 					<main>
 							<GardenBed />
@@ -21,7 +18,6 @@ function App() {
 							<FlowerList/>
 					</div>
 				</body>
-			</DndProvider>
 		</div>
 	);
 }

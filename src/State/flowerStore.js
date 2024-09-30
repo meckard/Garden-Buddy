@@ -10,7 +10,6 @@ export const useFlowerStore = create((set) => ({
 				console.log('Adding flower:', newFlower);
 				return { flowers: [...state.flowers, newFlower ] };
 			}
-            console.log('Flower already exists, not adding.');
 			return state; // No change if the item exists
 		}),
 	updateFlower: (id, newTop, newLeft) =>
