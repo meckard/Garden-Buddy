@@ -1,4 +1,4 @@
-import { itemTypes } from "../ItemTypes";
+import { CSS } from "@dnd-kit/utilities";
 import { useFlowerStore } from "../State/flowerStore";
 import { useEffect, useRef, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
@@ -23,14 +23,14 @@ export default function Flower({ name, id, left, top }) {
 		}
 	}, []);
 
-	const { attributes, listeners, setNodeRef, transform } = useDraggable({
-		id: `${flower.id}`,
-	});
-	const style = transform
-		? {
-				transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-		  }
-		: undefined;
+	const { attributes, listeners, setNodeRef, transform, transition } =
+		useDraggable({ id });
+	const style = {
+		transform: CSS.Translate.toString(transform),
+		transition,
+	};
+
+	console.log(style)
 
 	return (
 		<div

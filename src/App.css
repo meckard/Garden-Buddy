@@ -73,14 +73,13 @@ main {
 	font-weight: bold;
 	color: var(--dark-brown);
 	border: 3px dashed var(--dark-brown);
-	transition: transform 0.5s;
 	text-align: center;
 }
 
-.plant-node:hover {
+/* .plant-node:hover {
 	transform: scale(1.5);
 }
-
+ */
 .plant-list {
 	display: flex;
 	justify-content: center;
