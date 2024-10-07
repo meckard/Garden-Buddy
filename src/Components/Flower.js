@@ -23,12 +23,16 @@ export default function Flower({ name, id, left, top }) {
 		}
 	}, []);
 
-	const { attributes, listeners, setNodeRef, transform, transition } =
+	const { attributes, listeners, isDragging, setNodeRef, transform, transition } =
 		useDraggable({ id });
 	const style = {
 		transform: CSS.Translate.toString(transform),
 		transition,
 	};
+
+	if(isDragging) {
+		console.log(transform.x)
+	}
 
 	console.log(style)
 
