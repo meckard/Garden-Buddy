@@ -1,4 +1,3 @@
-import { itemTypes } from "../ItemTypes";
 import { useFlowerStore } from "../State/flowerStore";
 import { useDroppable } from "@dnd-kit/core";
 

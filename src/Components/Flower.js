@@ -1,7 +1,7 @@
 import { CSS } from "@dnd-kit/utilities";
 import { useFlowerStore } from "../State/flowerStore";
 import { useEffect, useRef, useState } from "react";
-import { useDraggable } from "@dnd-kit/core";
+import { useDraggable, useDndMonitor, DragEndEvent } from "@dnd-kit/core";
 
 export default function Flower({ name, id, left, top }) {
 	const flower = useFlowerStore((state) =>
@@ -34,9 +34,23 @@ export default function Flower({ name, id, left, top }) {
 		console.log(transform.x)
 	}
 
+	useDndMonitor({
+		onDragEnd(event) {
+			setPosition({ top:event.delta.x, left:event.delta.y})
+		console.log(position)
+		}
+	})
+
+	const handleDragEnd = (x,y) => {
+		setPosition({ top:x, left:y})
+		console.log(position)
+	}
+	console.log(position)
+
 	console.log(style)
 
 	return (
+		<useDndContext onDragEnd={handleDragEnd}>
 		<div
 			ref={setNodeRef}
 			style={style}
@@ -46,5 +60,6 @@ export default function Flower({ name, id, left, top }) {
 		>
 			{name}
 		</div>
+		</useDndContext>
 	);
 }

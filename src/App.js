@@ -11,7 +11,6 @@ function App() {
 					<nav></nav>
 				</header>
 				<body>
-
 					<main>
 						<GardenBed />
 					</main>
