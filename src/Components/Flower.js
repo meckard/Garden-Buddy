@@ -9,7 +9,8 @@ export default function Flower({ name, id, left, top }) {
 	);
 	const updateFlower = useFlowerStore((state) => state.updateFlower);
 	const elementRef = useRef(null);
-	const [position, setPosition] = useState({
+	const [positionStyle, setPositionStyle] = useState({
+		position: 'relative',
 		top: flower.top,
 		left: flower.left,
 	});
@@ -19,7 +20,7 @@ export default function Flower({ name, id, left, top }) {
 		if (elementRef.current) {
 			const rect = elementRef.current.getBoundingClientRect();
 			updateFlower(id, rect.x, rect.y);
-			setPosition({ top: rect.x, left: rect.y });
+			setPositionStyle({ position: 'relative', top: rect.x, left: rect.y });
 		}
 	}, []);
 
@@ -28,6 +29,7 @@ export default function Flower({ name, id, left, top }) {
 	const style = {
 		transform: CSS.Translate.toString(transform),
 		transition,
+		positionStyle	
 	};
 
 	if(isDragging) {
@@ -36,16 +38,15 @@ export default function Flower({ name, id, left, top }) {
 
 	useDndMonitor({
 		onDragEnd(event) {
-			setPosition({ top:event.delta.x, left:event.delta.y})
-		console.log(position)
+			setPositionStyle({ position: 'absolute', top:event.delta.x, left:event.delta.y})
 		}
 	})
 
 	const handleDragEnd = (x,y) => {
-		setPosition({ top:x, left:y})
-		console.log(position)
+		setPositionStyle({ position: 'absolute', top:x, left:y})
+
 	}
-	console.log(position)
+	console.log(positionStyle)
 
 	console.log(style)
 
