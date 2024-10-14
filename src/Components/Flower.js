@@ -10,7 +10,7 @@ export default function Flower({ name, id, left, top }) {
 	const updateFlower = useFlowerStore((state) => state.updateFlower);
 	const elementRef = useRef(null);
 	const [positionStyle, setPositionStyle] = useState({
-		position: 'relative',
+		position: "absolute",
 		top: flower.top,
 		left: flower.left,
 	});
@@ -20,47 +20,69 @@ export default function Flower({ name, id, left, top }) {
 		if (elementRef.current) {
 			const rect = elementRef.current.getBoundingClientRect();
 			updateFlower(id, rect.x, rect.y);
-			setPositionStyle({ position: 'relative', top: rect.x, left: rect.y });
+			setPositionStyle({ position: "relative", top: rect.x, left: rect.y });
 		}
 	}, []);
 
-	const { attributes, listeners, isDragging, setNodeRef, transform, transition } =
-		useDraggable({ id });
+	const {
+		attributes,
+		listeners,
+		isDragging,
+		setNodeRef,
+		transform,
+		transition,
+	} = useDraggable({ id: id });
+
 	const style = {
 		transform: CSS.Translate.toString(transform),
 		transition,
-		positionStyle	
+		top: `${positionStyle.top}px`,
+		left: `${positionStyle.left}px`,
+		position: "absolute", // Ensure absolute positioning within the container
 	};
 
-	if(isDragging) {
-		console.log(transform.x)
+	if (isDragging) {
+		console.log(transform.x);
 	}
 
 	useDndMonitor({
 		onDragEnd(event) {
-			setPositionStyle({ position: 'absolute', top:event.delta.x, left:event.delta.y})
-		}
-	})
+			const { delta } = event;
+			if (delta) {
+				const newTop = positionStyle.top + delta.y;
+				const newLeft = positionStyle.left + delta.x;
 
-	const handleDragEnd = (x,y) => {
-		setPositionStyle({ position: 'absolute', top:x, left:y})
+				// Update the flower state with new position
+				updateFlower(id, newLeft, newTop);
 
-	}
-	console.log(positionStyle)
+				// Update local state to persist new position
+				setPositionStyle({
+					top: newTop,
+					left: newLeft,
+					position: "absolute",
+				});
+			}
+		},
+	});
 
-	console.log(style)
+	const handleDragEnd = (x, y) => {
+		setPositionStyle({ position: "absolute", top: x, left: y });
+	};
+	console.log(positionStyle);
+
+	console.log(style);
 
 	return (
 		<useDndContext onDragEnd={handleDragEnd}>
-		<div
-			ref={setNodeRef}
-			style={style}
-			{...listeners}
-			{...attributes}
-			className="plant-node"
-		>
-			{name}
-		</div>
+			<div
+				ref={setNodeRef}
+				style={style}
+				{...listeners}
+				{...attributes}
+				className="plant-node"
+			>
+				<div>{name}</div>
+			</div>
 		</useDndContext>
 	);
 }
