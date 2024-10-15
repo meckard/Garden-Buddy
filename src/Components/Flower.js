@@ -16,13 +16,23 @@ export default function Flower({ name, id, left, top }) {
 	});
 
 	// Set initial location of flower nodes
-	useEffect(() => {
+	/* useEffect(() => {
 		if (elementRef.current) {
 			const rect = elementRef.current.getBoundingClientRect();
 			updateFlower(id, rect.x, rect.y);
 			setPositionStyle({ position: "relative", top: rect.x, left: rect.y });
 		}
-	}, []);
+	}, []); */
+
+	useEffect(() => {
+		if (flower) {
+		  setPositionStyle({
+			position: "absolute",
+			top: flower.top,
+			left: flower.left,
+		  });
+		}
+	  }, [flower]);
 
 	const {
 		attributes,
@@ -47,10 +57,14 @@ export default function Flower({ name, id, left, top }) {
 
 	useDndMonitor({
 		onDragEnd(event) {
-			const { delta } = event;
+			/* const { delta } = event;
 			if (delta) {
 				const newTop = positionStyle.top + delta.y;
-				const newLeft = positionStyle.left + delta.x;
+				const newLeft = positionStyle.left + delta.x; */
+
+				if (transform) {
+					const newTop = positionStyle.top + transform.y;
+					const newLeft = positionStyle.left + transform.x;
 
 				// Update the flower state with new position
 				updateFlower(id, newLeft, newTop);

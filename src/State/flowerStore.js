@@ -12,10 +12,18 @@ export const useFlowerStore = create((set) => ({
 			}
 			return state; // No change if the item exists
 		}),
-	updateFlower: (id, newTop, newLeft) =>
+	/* updateFlower: (id, newTop, newLeft) =>
 		set((state) => ({
 			flowers: state.flowers.map((flower) =>
                 flower.id === id ? { ...flower, top: newTop, left: newLeft } : flower
               ),
-		})),
+		})), */
+		updateFlower: (id, left, top) =>
+			set((state) => ({
+			  flowers: state.flowers.map((flower) =>
+				flower.id === id ? { ...flower, left, top } : flower
+			  ),
+			}))
 }));
+
+
